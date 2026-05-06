@@ -1,0 +1,15 @@
+Entry 1
+Date: 2026-05-05
+Entry Type: Engineering Decision
+Task Worked On: Return type/parameters for dfs()
+Issue or decision: Comment was left and I had to decide what type of return and parameters
+to use before writing logic
+What I tried: Thought about using void with a bool & found parameter from main(),this would
+let the DFS signal succeed without a return value. This meant adding a extra variable and passing it
+through each time the recursive was called.
+Final Decision: Used bool as the return type. This is because when the exit is found the function would
+return true and the value travels back up the call stack. Also passed maze as a constant reference since the
+DFS is the only thing that reads it. visited, parent_r, and parent_c passed by reference since DFS writes them
+and exit_r and exit_c as plain ints because the exit coordinates never change.
+Commit: Implemented dfs() logic
+
