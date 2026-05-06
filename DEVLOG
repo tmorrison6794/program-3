@@ -13,3 +13,19 @@ DFS is the only thing that reads it. visited, parent_r, and parent_c passed by r
 and exit_r and exit_c as plain ints because the exit coordinates never change.
 Commit: Implemented dfs() logic
 
+
+Entry 2
+Date: 2026-05-05
+Entry type: Bug Fix
+Task Worked on: dfs() base cases
+Issue or decision: My first attempt had maze[r][c]==1 and it didn't check if r and c were in bounds. When it ran through
+an online compiler it crashed.
+Symptom: DFS tried to move off the edge of the maze grid
+What I tried: Added cout<<r<<" "<<c<<endl; at the top to trace values. r ad c were going negative or going above
+N/M before the wall check ran. This meant that maze[r][c]==1 was accessed out of range.
+Fix: Reordered checks so out of of bound comes first then the wall and then visited.
+Commit: Fixed crash by checking bounds. (Fixed before actual commit to git hub)
+
+
+
+
