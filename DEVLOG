@@ -13,7 +13,6 @@ DFS is the only thing that reads it. visited, parent_r, and parent_c passed by r
 and exit_r and exit_c as plain ints because the exit coordinates never change.
 Commit: Implemented dfs() logic
 
-
 Entry 2
 Date: 2026-05-05
 Entry type: Bug Fix
@@ -24,7 +23,33 @@ Symptom: DFS tried to move off the edge of the maze grid
 What I tried: Added cout<<r<<" "<<c<<endl; at the top to trace values. r ad c were going negative or going above
 N/M before the wall check ran. This meant that maze[r][c]==1 was accessed out of range.
 Fix: Reordered checks so out of of bound comes first then the wall and then visited.
-Commit: Fixed crash by checking bounds. (Fixed before actual commit to git hub)
+Commit: Fixed crash by checking bounds. (Fixed before commited to git hub)
+
+Entry 3
+Date: 2026-05-06
+Entry Type: Bug fix
+Task Worked On: Corrected parent tracking for path reconstruction
+Issue: When DFS returned true, printPath() was printing (-1,-1) or looping indefinitely
+Error Message: Output of (-1,-1) or the program froze after printing "Path from entrance to exit:" and never finished
+Symptom: Program froze
+What I tried: Read printPath() and saw it goes backwards through parent_r as well as parent_c until it gets to the entrance.
+If the arrays contain -1 the while loop would never hit the entrance and it would run forever.
+Fix: Moved the assignment to before the recursive call. I originally made the parent after the recursive call.
+Commit: Encountered an error while testing and moved the parent assignment to run before the recursive call.
+
+Entry 4
+Date: 2026-05-06
+Entry Type: Engineering decision
+Task Worked On: Pre check in the for loop
+Issue: For loop checks the bounds, walls, and if it was visited before recursing even though the base case would
+already handle this. I wasn't sure if I wanted to keep it or remove it.
+What I Tried: Removed the pre check and the output was still fine. DFS made recursive calls which weren't mandatory.
+Final Decision: Kept pre check since it reduced calls and kept the call stack smaller.
+Commit: Keeping pre check in for loop.
+
+
+
+
 
 
 
