@@ -7,6 +7,7 @@ to use before writing logic
 What I tried: Thought about using void with a bool & found parameter from main(),this would
 let the DFS signal succeed without a return value. This meant adding a extra variable and passing it
 through each time the recursive was called.
+Error message/symptom: N/A
 Final Decision: Used bool as the return type. This is because when the exit is found the function would
 return true and the value travels back up the call stack. Also passed maze as a constant reference since the
 DFS is the only thing that reads it. visited, parent_r, and parent_c passed by reference since DFS writes them
@@ -22,7 +23,7 @@ an online compiler it crashed.
 Symptom: DFS tried to move off the edge of the maze grid
 What I tried: Added cout<<r<<" "<<c<<endl; at the top to trace values. r ad c were going negative or going above
 N/M before the wall check ran. This meant that maze[r][c]==1 was accessed out of range.
-Fix: Reordered checks so out of of bound comes first then the wall and then visited.
+Fix: Reordered checks so out of bound comes first then the wall and then visited.
 Commit: Fixed crash by checking bounds. (Fixed before commited to git hub)
 
 Entry 3
@@ -43,9 +44,31 @@ Entry Type: Engineering decision
 Task Worked On: Pre check in the for loop
 Issue: For loop checks the bounds, walls, and if it was visited before recursing even though the base case would
 already handle this. I wasn't sure if I wanted to keep it or remove it.
+Error message/symptom: N/A
 What I Tried: Removed the pre check and the output was still fine. DFS made recursive calls which weren't mandatory.
 Final Decision: Kept pre check since it reduced calls and kept the call stack smaller.
 Commit: Keeping pre check in for loop.
+
+Entry 5
+Date: 2026-05-06
+Entry Type: Edge Case/Testing Entry
+Task Worked on: Checking if path prints worked correctly
+Issue: Tested the program on a 5x5 maze to check if the path output was correct
+Error message: Path coordinates were printing but needed to make sure the order was correct from the entrance to the exit
+What I Tried: Looked through printPath() and made sure that the parent arrays were correctly filled and that the path was
+being printed in the right order
+Fix: No change was needed since the output was correct
+Commit: 5x5 maze testing to make sure the output was correct
+
+Entry 6
+Date: 2026-05-06
+Entry Type: Edge Case/Testing Entry
+Task Worked On: Making sure no path case works correctly
+Issue: Double checking that "No path exists" is printed correctly when DFS couldn't reach the exit
+Error Message/Symptom: Ran the program until a maze generated where S didnt have an open route to reach E.
+What I Tried: Kept running the program over and over with a different maze size until a no path  case appeared
+Fix: Else block printed "No path exists" correctly
+Commit: Tested no path case and double checked output.
 
 
 
